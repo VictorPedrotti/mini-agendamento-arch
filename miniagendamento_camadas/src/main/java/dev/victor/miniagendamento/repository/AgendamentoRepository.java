@@ -15,8 +15,8 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
           FROM Agendamento a 
           WHERE a.usuario = :usuario
               AND a.status = dev.victor.miniagendamento.model.StatusAgendamento.AGENDADO
-              AND (a.dataInicio < :fim AND dataFim > :inicio)
-              AND (:ignoreId is NULL OR a.id <> : ignoreId)
+              AND (a.dataInicio < :fim AND a.dataFim > :inicio)
+              AND (:ignoreId is NULL OR a.id <> :ignoreId)
   """)
 
   boolean existsConflito(@Param("usuario") String usuario,

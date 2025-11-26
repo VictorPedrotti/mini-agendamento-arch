@@ -42,7 +42,7 @@ public class AgendamentoService {
     AgendamentoMapper.merge(entity, req);
 
     validarIntervalo(req.dataInicio(), req.dataFim());
-    checarConflito(entity.getUsuario(), req.dataInicio(), req.dataFim(), null);
+    checarConflito(entity.getUsuario(), req.dataInicio(), req.dataFim(), entity.getId());
 
     entity = repo.save(entity);
     return AgendamentoMapper.toResponse(entity);
@@ -76,7 +76,7 @@ public class AgendamentoService {
   }
 
   private void validarIntervalo(LocalDateTime inicio, LocalDateTime fim) {
-    if (inicio == null || fim == null || inicio.isBefore(fim)) {
+    if (inicio == null || fim == null || !inicio.isBefore(fim)) {
       throw new IllegalArgumentException("Intervalo inválido: dataInicio deve ser anterior a dataFim");
     }
   }
