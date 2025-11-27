@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: mini_agendamento_ca
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: mini_agendamento_ca
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  
