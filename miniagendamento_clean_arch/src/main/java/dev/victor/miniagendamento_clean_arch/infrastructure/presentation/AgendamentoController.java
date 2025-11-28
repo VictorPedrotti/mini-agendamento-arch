@@ -58,7 +58,7 @@ public class AgendamentoController {
     return ResponseEntity.status(HttpStatus.CREATED).body(agendamentoResponseMapper.toDto(criado));  
   }
 
-  @GetMapping("/{id")
+  @GetMapping("/{id}")
   public ResponseEntity<AgendamentoResponse> buscarPorId(@PathVariable Long id) {
     return ResponseEntity.ok(agendamentoResponseMapper.toDto(buscarAgendamentoPorIdUseCase.execute(id)));  
   }

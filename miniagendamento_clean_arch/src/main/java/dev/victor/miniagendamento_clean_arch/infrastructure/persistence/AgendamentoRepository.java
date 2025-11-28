@@ -10,9 +10,9 @@ public interface AgendamentoRepository extends JpaRepository<AgendamentoEntity, 
 
   @Query("""
       SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END
-          FROM Agendamento a 
+          FROM AgendamentoEntity a 
           WHERE a.usuario = :usuario
-              AND a.status = dev.victor.miniagendamento.model.StatusAgendamento.AGENDADO
+              AND a.status = dev.victor.miniagendamento_clean_arch.core.enums.StatusAgendamento.AGENDADO
               AND (a.dataInicio < :fim AND a.dataFim > :inicio)
               AND (:ignoreId is NULL OR a.id <> :ignoreId)
   """)
