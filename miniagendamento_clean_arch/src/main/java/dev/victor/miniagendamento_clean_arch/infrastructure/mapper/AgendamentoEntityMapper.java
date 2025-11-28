@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
 import dev.victor.miniagendamento_clean_arch.core.entities.Agendamento;
-import dev.victor.miniagendamento_clean_arch.core.enums.StatusAgendamento;
 import dev.victor.miniagendamento_clean_arch.infrastructure.persistence.AgendamentoEntity;
 
 @Component
@@ -13,13 +12,14 @@ public class AgendamentoEntityMapper {
 
   public AgendamentoEntity toEntity(Agendamento agendamento) {
     return AgendamentoEntity.builder()
+            .id(agendamento.id())
             .titulo(agendamento.titulo())
             .descricao(agendamento.descricao())
             .dataInicio(agendamento.dataInicio())
             .dataFim(agendamento.dataFim())
             .usuario(agendamento.usuario())
-            .status(StatusAgendamento.AGENDADO)
-            .criadoEm(LocalDateTime.now())
+            .status(agendamento.status())
+            .criadoEm(agendamento.criadoEm())
             .atualizadoEm(LocalDateTime.now())
             .build();  
   }
